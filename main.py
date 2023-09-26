@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 #THE MAIN THE MAIN
+# FAST DIE
 app = FastAPI()
 
 @app.get("/")
