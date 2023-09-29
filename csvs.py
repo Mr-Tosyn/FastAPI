@@ -28,3 +28,42 @@ async def get_person(id: int):
             if int(row[0]) == id:
                 return Person(id=int(row[0]), name=row[1], age=int(row[2]))
     return {"message": "Person not found"}
+
+# Update - PUT
+@app.put("/person/{id}")
+async def update_person(id: int, person: Person):
+    rows = []
+    with open ('new.csv', 'r') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for row in reader:
+            rows.append(row)
+    with open ('new.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        for index, row in enumerate(rows):
+            if int(row[0]) == id:
+                writer.writerow([person.id, person.name, person.age])
+            else:
+                writer.writerow(rows[index])
+    return {"message": "Person updated successfully", "data": person}
+
+# Delete - DELETE
+@app.delete("/person/{id}")
+async def delete_person(id: int):
+    rows = []
+    with open ('new.csv', 'r') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for row in reader:
+            rows.append(row)
+    with open ('new.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        for index, row in enumerate(rows):
+            if int(row[0]) == id:
+                continue
+            else:
+                writer.writerow(rows[index])
+    return {"message": "Person deleted successfully"}
+        

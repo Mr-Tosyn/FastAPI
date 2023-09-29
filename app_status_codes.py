@@ -27,7 +27,7 @@ class BookCreate(BaseModel):
     title: str
     author: str
     year_published: int
-    pages: int
+    pages: int 
     language: str
     
 class BookUpdate(BaseModel):
