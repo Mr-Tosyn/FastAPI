@@ -49,5 +49,4 @@ def get_book_by_id(id: str):
 @app.post("/books") # p method to create a new resource
 def add_book(
     tittle: str, author: str, year: int, page: int, language: str 
-):  # these parameters are called "query parameters", The 
-
+):  # these parameters are called "query parameters", The  
