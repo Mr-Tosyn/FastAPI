@@ -25,9 +25,9 @@ async def get_person(id: int):
     with open("new.csv", "r") as file:
         reader = csv.reader(file)
         next(reader)
-        for column in reader:
-            if int(column[0]) == id:
-                return Person(id=int(column[0]), name=column[1], age=int(column[2]))
+        for row in reader:
+            if int(row[0]) == id:
+                return Person(id=int(row[0]), name=row[1], age=int(column[2]))
     return {"message": "Person not found"}
 
 # Update - PUT
