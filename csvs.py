@@ -11,7 +11,6 @@ class Person(BaseModel):
     
 # CRUD Operations
 # Create - POST
-
 @app.post("/person/")
 async def create_person(person: Person):
     with open("new.csv", "a", newline='') as file:
@@ -27,7 +26,7 @@ async def get_person(id: int):
         next(reader)
         for row in reader:
             if int(row[0]) == id:
-                return Person(id=int(row[0]), name=row[1], age=int(column[2]))
+                return Person(id=int(row[0]), name=row[1], age=int(row[2]))
     return {"message": "Person not found"}
 
 # Update - PUT
@@ -67,6 +66,7 @@ async def delete_person(id: int):
             else:
                 writer.writerow(rows[index])
     return {"message": "Person deleted successfully"}
+
 
 
         
