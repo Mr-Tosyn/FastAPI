@@ -13,10 +13,6 @@ class Person(BaseModel):
 # Create - POST
 @app.post("/person/")
 async def create_person(person: Person):
-    with open("new.csv", "a", newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([person.id, person.name, person.age])
-    return {"message": "Person created successfully", "data": person}
 
 # Read - GET
 @app.get("/person/{id}")
@@ -38,7 +34,7 @@ async def update_person(id: int, person: Person):
         header = next(reader)
         for row in reader:
             rows.append(row)
-    with open ('new.csv', 'w', newline='') as f:
+    with open ('new.csv', 'w', newline='') as f:       
         writer = csv.writer(f)
         writer.writerow(header)
         for index, row in enumerate(rows):
